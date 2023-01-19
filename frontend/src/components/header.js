@@ -23,7 +23,7 @@ const Header = () => {
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav mr-auto">
             <li className="nav-item active">
-              <NavLink className="nav-link" to="/">
+              <NavLink className="nav-link" to="/todolist">
                 Home
               </NavLink>
             </li>
