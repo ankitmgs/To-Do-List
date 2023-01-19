@@ -1,6 +1,8 @@
 const express = require("express");
 const app = express();
 const cors = require("cors");
+const { default: mongoose } = require("mongoose");
+const dotenv = require('dotenv').config();
 
 const port = 5000;
 
@@ -11,6 +13,15 @@ app.use(express.json());
 
 //middleware
 // app.use("/user", userRouter);
+
+
+//DB Connection
+mongoose.connect(process.env.DB)
+.then(() => {
+  console.log("DB Connected");
+}).catch((err) => {
+  
+});
 
 
 //to start server
