@@ -6,7 +6,7 @@ const todoList = () => {
       <div className="d-flex justify-content-center">
         <div
           className="card m-5 p-5"
-          style={{ border: "1px solid black", width: "50rem" }}
+          style={{ width: "50rem", boxShadow: "rgba(100, 100, 111, 0.2) 0px 7px 29px 0px" }}
         >
           <input
             className="form-control"
