@@ -15,6 +15,25 @@ const todoList = () => {
           />
 
           <button className="btn btn-primary mt-3">Add</button>
+
+          <hr />
+
+          <div className="card">
+            <div className="row">
+              <div className="col-2">
+                <div className="d-flex justify-content-center">
+                  <input className="mt-3" type="checkbox" />
+                </div>
+              </div>
+              <div className="col-6">
+                <p className="mt-1" style={{ fontSize: "1.5rem" }}>Baby I love You</p>
+              </div>
+              <div className="col-4">
+                <button className="mt-2 btn btn-danger ml-4">Delete</button>
+                <button className="mt-2 btn btn-info ml-4">Edit</button>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
