@@ -9,8 +9,11 @@ import {
 import { Formik } from "formik";
 import app_config from "../config";
 import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 
 const Signup = () => {
+  const navigate = useNavigate();
+
   const url = app_config.api_url;
 
   const signupForm = {
@@ -33,7 +36,10 @@ const Signup = () => {
             icon: "success",
             title: "Success",
             text: "Registered Successfully",
-          });
+          })
+          .then(() => {
+            navigate("/login");
+          })
         }
         return res.json();
       })
