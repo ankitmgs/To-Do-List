@@ -6,7 +6,10 @@ const todoList = () => {
       <div className="d-flex justify-content-center">
         <div
           className="card m-5 p-5"
-          style={{ width: "50rem", boxShadow: "rgba(100, 100, 111, 0.2) 0px 7px 29px 0px" }}
+          style={{
+            width: "50rem",
+            boxShadow: "rgba(100, 100, 111, 0.2) 0px 7px 29px 0px",
+          }}
         >
           <input
             className="form-control"
@@ -26,7 +29,9 @@ const todoList = () => {
                 </div>
               </div>
               <div className="col-6">
-                <p className="mt-1" style={{ fontSize: "1.5rem" }}>Baby I love You</p>
+                <p className="mt-1" style={{ fontSize: "1.5rem" }}>
+                  Baby I love You
+                </p>
               </div>
               <div className="col-4">
                 <button className="mt-2 btn btn-danger ml-4">Delete</button>
