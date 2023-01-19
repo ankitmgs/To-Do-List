@@ -23,6 +23,15 @@ app.use(express.json());
 // app.use("/user", userRouter);
 
 
+//DB Connection
+mongoose.connect(process.env.DB)
+.then(() => {
+  console.log("DB Connected");
+}).catch((err) => {
+  
+});
+
+
 //to start server
 app.listen(port, () => {
   console.log("server started");
