@@ -10,12 +10,14 @@ import {
   MDBIcon,
   MDBInput,
 } from "mdb-react-ui-kit";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { Formik } from "formik";
 import Swal from "sweetalert2";
 import app_config from "../config";
 
 const Login = () => {
+
+  const navigate = useNavigate();
   const url = app_config.api_url;
 
   const loginForm = {
@@ -40,13 +42,17 @@ const Login = () => {
           icon: "success",
           title: "Success",
           text: "You have loggedin successfully!",
-        });
+        })
+        .then(() => {
+          navigate("/todolist")
+        })
       } else if (res.status === 300) {
         Swal.fire({
           icon: "error",
           title: "Failed",
           text: "Email or password is incorrect!",
-        });
+        })
+        
       }
       return res.json();
     });
