@@ -1,18 +1,22 @@
 import React, { useState } from "react";
+import axios from "axios";
 
-const todoList = () => {
 
- const [itemText , setItemText] = useState('');
 
- 
-//add new todo item to database
-  const addItem = async() =>{
+const TodoList = () => {
+
+  const [itemText, setItemText] = useState('');
+
+
+  //add new todo item to database
+  const addItem = async () => {
 
     try {
-      
+      const res = await axios.post('http://localhost:5000/api/item', { item: itemText });
+      console.log(res);
     } catch (err) {
       console.log(err);
-      
+
     }
 
   }
@@ -26,21 +30,19 @@ const todoList = () => {
             boxShadow: "rgba(100, 100, 111, 0.2) 0px 7px 29px 0px",
           }}
         >
-          <input
-            className="form-control"
-            type="text"
-            placeholder="Enter Title"
-            onChange={e=>{
-              setItemText(e.target.value)
-              
-            }}
-            value ={itemText}
-          />
-
-          <button className="btn btn-primary mt-3">Add</button>
-
+          <form clasform="App" >
+            <input
+              className="form-control"
+              type="text"
+              placeholder="Enter Title"
+              onChange={e => {
+                setItemText(e.target.value)
+              }}
+              value={itemText}
+            />
+            <button className="btn btn-primary mt-3">Add</button>
+          </form>
           <hr />
-
           <div className="card">
             <div className="row">
               <div className="col-2">
@@ -65,4 +67,4 @@ const todoList = () => {
   );
 };
 
-export default todoList;
+export default TodoList;
