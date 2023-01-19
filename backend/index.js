@@ -1,6 +1,5 @@
 const express = require("express");
 const app = express();
-const userRouter = require("./routers/userRouter");
 const cors = require("cors");
 
 const port = 5000;
@@ -11,7 +10,7 @@ app.use(express.json());
 
 
 //middleware
-app.use("/user", userRouter);
+// app.use("/user", userRouter);
 
 
 //to start server
