@@ -5,6 +5,7 @@ const cors = require("cors");
 const todoModals = require("./modals/todoModals");
 const dotenv = require("dotenv").config();
 const userRouters = require("./routers/userRouters");
+const TodoRouter = require("./routers/todoRouter");
 
 const port = 5000;
 
@@ -26,12 +27,9 @@ mongoose
     console.log(err);
   });
 
-//lets import
-const TodoRouter = require("./routers/todoRouter");
-
 //middleware
-// app.use("/user", userRouter);
-app.use("/", TodoRouter);
+// app.use("/", TodoRouter);
+app.use("/todo", TodoRouter)
 
 //to start server
 app.listen(port, () => {
