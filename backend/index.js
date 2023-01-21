@@ -14,7 +14,7 @@ app.use(express.json());
 const cors = require("cors");
 
 //lets import
-const TodoRouter = require("./routers/todoRouter");
+// const TodoRouter = require("./routers/todoRouter");
 
 const port = 5000;
 
