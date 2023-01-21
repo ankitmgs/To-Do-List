@@ -1,7 +1,8 @@
 POST http://localhost:5000/api/item
+
 Content-Type: application/json
 
 {
-    "item":"This is the first todo item  
-    "
+    "item":"This is the first todo item"
+
 }

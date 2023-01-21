@@ -3,7 +3,7 @@ const mongoose = require('mongoose')
 
 //create schema
 const ToDoItemSchema = new mongoose.Schema({
-    iten:{
+    item:{
         type:String,
         required:true
     }

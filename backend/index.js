@@ -1,16 +1,25 @@
 const express = require("express");
 const mongoose = require("mongoose");
-const app = express();
-const cors = require("cors");
-const todoModals = require("./modals/todoModals");
 const dotenv = require("dotenv").config();
 const userRouters = require("./routers/userRouters");
+
+
+const app = express();
+//use expess.json() to get data into json format
+app.use(express.json());
+
+
+
+const cors = require("cors");
+
+//lets import
+const TodoRouter = require("./routers/todoRouter");
 
 const port = 5000;
 
 // to allow your frontend
 app.use(cors({ origin: ["http://localhost:3000"] }));
-app.use(express.json());
+
 
 //middleware
 app.use("/user", userRouters);
@@ -26,8 +35,7 @@ mongoose
     console.log(err);
   });
 
-//lets import
-const TodoRouter = require("./routers/todoRouter");
+
 
 //middleware
 // app.use("/user", userRouter);
