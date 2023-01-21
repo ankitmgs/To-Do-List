@@ -1,47 +1,44 @@
 import React, { useState, useEffect } from "react";
-import { BiEdit } from "react-icons/bi"
-import { AiFillDelete } from "react-icons/ai"
+import { BiEdit } from "react-icons/bi";
+import { AiFillDelete } from "react-icons/ai";
 import Swal from "sweetalert2";
 import { Formik } from "formik";
 import app_config from "../config";
 
 const TodoList = () => {
-
-
   const url = app_config.api_url;
-  
-  const [itemText, setItemText] = useState('');
+
+  const [itemText, setItemText] = useState("");
 
   const [itemsArray, setItemsArray] = useState([]);
 
   const getItemDataFromBackend = async () => {
-    const response = await fetch(url + "/todo/items")
+    const response = await fetch(url + "/todo/items");
     const data = await response.json();
     console.log(data);
     setItemsArray(data);
-  }
-
+  };
 
   //delete item when click on delete
-  const deleteItem = async (id) => {
+  const deleteItem = (id) => {
     const reOpt = {
-      method: "Delete",
+      method: "DELETE",
     };
-    fetch("http://localhost:5000/todo/delete" + id, reOpt)
+    fetch(url + "/todo/delete/" + id, reOpt)
       .then((res) => {
         if (res.status === 200) {
           Swal.fire("Deleted!", "Your data has been deleted.", "success");
+          getItemDataFromBackend();
           return res.json();
         }
       })
       .then((data) => {
         console.log(data);
       });
-
-  }
+  };
   useEffect(() => {
     getItemDataFromBackend();
-  }, [])
+  }, []);
 
   const displayData = () => {
     return itemsArray.map((data) => (
@@ -59,25 +56,30 @@ const TodoList = () => {
               </p>
             </div>
             <div className="col-4 icons">
-              <BiEdit className="icon" onClick={() => {deleteItem(data._id)}}>Delete</BiEdit>
-              <AiFillDelete className=" icon " >Edit</AiFillDelete>
+              <button
+                className="btn btn-danger"
+                onClick={() => {
+                  deleteItem(data._id);
+                }}
+              >
+                Delete
+              </button>
+              <AiFillDelete className=" icon ">Edit</AiFillDelete>
             </div>
           </div>
         </div>
       </>
-    )
-    )
-  }
+    ));
+  };
   const todoItems = {
-    item: " "
-  }
-
+    item: " ",
+  };
 
   const addItem = (data) => {
     fetch(url + "/todo/item", {
       method: "POST",
       body: JSON.stringify(data),
-      headers: { "Content-Type": "application/json" }
+      headers: { "Content-Type": "application/json" },
     })
       .then((res) => {
         console.log(res.status);
@@ -93,8 +95,7 @@ const TodoList = () => {
       .then((data) => {
         console.log(data);
       });
-  }
-
+  };
 
   return (
     <>
@@ -119,7 +120,12 @@ const TodoList = () => {
                     value={values.item}
                     onChange={handleChange}
                   />
-                  <button className="btn btn-primary mt-3 w-25 mx-auto" type="submit" >Add Data</button>
+                  <button
+                    className="btn btn-primary mt-3 w-25 mx-auto"
+                    type="submit"
+                  >
+                    Add Data
+                  </button>
                   <hr />
                   {displayData()}
                 </div>
