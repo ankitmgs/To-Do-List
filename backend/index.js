@@ -2,6 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv").config();
 const userRouters = require("./routers/userRouters");
+const TodoRouter = require("./routers/todoRouter");
 
 
 const app = express();
@@ -35,11 +36,9 @@ mongoose
     console.log(err);
   });
 
-
-
 //middleware
-// app.use("/user", userRouter);
-app.use("/", TodoRouter);
+// app.use("/", TodoRouter);
+app.use("/todo", TodoRouter)
 
 //to start server
 app.listen(port, () => {
