@@ -19,7 +19,6 @@ router.post("/item", (req, res) => {
 
 //let create second route ---get data from database
  router.get("/items" , (req ,res) =>{
-
   todoItemsModel.find({})
   .then((data)=>{
     console.log(data)
@@ -30,7 +29,6 @@ router.post("/item", (req, res) => {
     res.status(500).json(err);
   });
  });
-
 
 //let's update item
 router.put("/update/:id",  (req, res) => {
