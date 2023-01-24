@@ -46,9 +46,9 @@ router.put("/update/:id",  (req, res) => {
 //Let's Delete iten from database
 router.delete("/delete/:id",  (req, res) => {
   //find the item by its id  and delete it
-  todoItemsModel.findByIdAndDelete(req.params.id)
-  .then((data)=>{
-    console.log(data)
+  todoItemsModel.findByIdAndDelete(req.params.id , req.body)
+  .then((_id)=>{
+    console.log("id--->" ,_id);
     res.status(200).json({message:"item deleted"})
   })
   .catch((err) => {
