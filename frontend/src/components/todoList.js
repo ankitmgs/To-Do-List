@@ -140,6 +140,7 @@ const TodoList = () => {
             title: "Success",
             text: "added Successfully",
           });
+          getItemDataFromBackend();
         }
         return res.json();
       })
