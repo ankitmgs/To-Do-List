@@ -10,13 +10,13 @@ Content-Type: application/json
 
 
 ####
-PUT http://localhost:5000/todo/update/63c9914de217063ca1f561c8
+PUT http://localhost:5000/todo/update/63cbc50b7930a3917f353215
 Content-Type: application/json
 
 {
-    "item":"Rehnuma bano"
+    "item":"Rehnuma Beautiful girl"
 }
 ###
 
-DELETE  http://localhost:5000/todo/delete/63cbb9e16c389dce80d3ce0c
+DELETE http://localhost:5000/todo/delete/63cbb9e16c389dce80d3ce0c
 Content-Type: application/json

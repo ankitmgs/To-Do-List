@@ -4,9 +4,9 @@ import { NavLink } from "react-router-dom";
 const Header = () => {
   return (
     <div>
-      <nav className="navbar navbar-expand-lg navbar-light bg-light">
+      <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
         <a className="navbar-brand" href="#">
-          Navbar
+          ToDoApp
         </a>
         <button
           className="navbar-toggler"
@@ -19,12 +19,11 @@ const Header = () => {
         >
           <span className="navbar-toggler-icon"></span>
         </button>
-
-        <div className="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul className="navbar-nav mr-auto">
+        <div className="collapse navbar-collapse " id="navbarSupportedContent">
+          <ul className="navbar-nav mx-auto  d-flex justify-content-around">
             <li className="nav-item active">
               <NavLink className="nav-link" to="/todolist">
-                Home
+                ToDoList
               </NavLink>
             </li>
             <li className="nav-item">
@@ -37,24 +36,14 @@ const Header = () => {
                 Signup
               </NavLink>
             </li>
-            <li className="nav-item">
+            {/* <li className="nav-item">
               <NavLink className="nav-link" to="/todolist">
                 To-Do
               </NavLink>
-            </li>
-            
+            </li> */}
+
           </ul>
-          <form className="form-inline my-2 my-lg-0">
-            <input
-              className="form-control mr-sm-2"
-              type="search"
-              placeholder="Search"
-              aria-label="Search"
-            />
-            <button className="btn btn-outline-success my-2 my-sm-0" type="submit">
-              Search
-            </button>
-          </form>
+
         </div>
       </nav>
     </div>

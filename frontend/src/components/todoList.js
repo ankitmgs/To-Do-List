@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { BiEdit } from "react-icons/bi";
-import { AiFillDelete } from "react-icons/ai";
+import { Button } from "@mui/material";
+
 import Swal from "sweetalert2";
 import { Formik } from "formik";
 import app_config from "../config";
@@ -44,29 +44,80 @@ const TodoList = () => {
     return itemsArray.map((data) => (
       <>
         <div className="card">
-          <div className="row">
+          <div className="container">
+            <div  style={{alignItems:"center"}} className=" row d-flex justify content-center mt-2 p-2">
+              <div className="col-8">
+                <p>{data.item}</p>
+              </div>
+              <div className="col-2">
+              <Button
+                className="btn btn-danger"
+                onClick={() => {
+                  deleteItem(data._id);
+                }}
+                variant="contained"
+                color="error"
+              >
+                <i className="fa fa-trash-alt m-0"></i>
+                &nbsp;  
+                </Button>
+              </div>
+              <div className="col-2">
+              <Button
+                className="btn btn-danger"
+                // onClick={() => {
+                //   deleteItem(data._id);
+                // }}
+                variant="contained"
+                color="warning"
+              >
+                <i className="fas fa-pen m-0"></i>
+                &nbsp;
+              
+              </Button>
+
+              </div>
+            </div>
+
+          </div>
+          {/* <div className="row">
             <div className="col-2">
               <div className="d-flex justify-content-center">
                 <input className="mt-3" type="checkbox" />
               </div>
             </div>
             <div className="col-6">
-              <p className="mt-3 py-2" style={{ fontSize: "1.5rem" }}>
+              <p className="mt-3 p-2" style={{ fontSize: "1.5rem" }}>
                 {data.item}
               </p>
             </div>
-            <div className="col-4 icons">
-              <button
+            <div className="col-4 icons p-1">
+              <Button
                 className="btn btn-danger"
                 onClick={() => {
                   deleteItem(data._id);
                 }}
+                variant="contained"
+                color="error"
               >
-                Delete
-              </button>
-              <AiFillDelete className=" icon ">Edit</AiFillDelete>
+                <i className="fa fa-trash-alt"></i>
+                &nbsp;  Delete
+              </Button>
+              <Button
+                className="btn btn-danger"
+                // onClick={() => {
+                //   deleteItem(data._id);
+                // }}
+                variant="contained"
+                color="warning"
+              >
+                <i className="fas fa-pen"></i>
+                &nbsp;
+                Update
+              </Button>
+
             </div>
-          </div>
+          </div> */}
         </div>
       </>
     ));

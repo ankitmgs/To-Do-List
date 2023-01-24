@@ -1,6 +1,6 @@
 import React from "react";
 import {
-  MDBBtn,
+
   MDBContainer,
   MDBCard,
   MDBCardBody,
@@ -62,20 +62,20 @@ const Login = () => {
       <Formik initialValues={loginForm} onSubmit={loginSubmit}>
         {({ values, handleSubmit, handleChange }) => (
           <form onSubmit={handleSubmit}>
-            <MDBContainer className="my-5">
+            <MDBContainer className="mt-4">
               <MDBCard>
                 <MDBRow className="g-0">
                   <MDBCol md="6">
                     <MDBCardImage
                       src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/img1.webp"
                       alt="login form"
-                      className="rounded-start w-100"
+                      className="rounded-start w-100 h-70"
                     />
                   </MDBCol>
 
                   <MDBCol md="6">
                     <MDBCardBody className="d-flex flex-column">
-                      <div className="d-flex flex-row mt-2">
+                      <div className="d-flex flex-row mt-5 ">
                         <MDBIcon
                           fas
                           icon="cubes fa-3x me-3"
@@ -123,15 +123,6 @@ const Login = () => {
                           Register here
                         </NavLink>
                       </p>
-
-                      <div className="d-flex flex-row justify-content-start">
-                        <NavLink to="#!" className="small text-muted me-1">
-                          Terms of use.
-                        </NavLink>
-                        <NavLink to="#!" className="small text-muted">
-                          Privacy policy
-                        </NavLink>
-                      </div>
                     </MDBCardBody>
                   </MDBCol>
                 </MDBRow>
