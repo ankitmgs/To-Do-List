@@ -7,10 +7,37 @@ import app_config from "../config";
 
 const TodoList = () => {
   const url = app_config.api_url;
+  const [show, setShow] = useState(false);
 
   const [itemText, setItemText] = useState("");
-
+  const [selected, setSelected] = useState(null);
+  const [update, setUpdate] = useState("");
   const [itemsArray, setItemsArray] = useState([]);
+  const headers = {"Content-Type": "application/json"}
+
+  const handleUpdate = (id) => {
+    
+    console.log("jcnsvji",update)
+  console.log("sdjkbfshk",id)
+  
+  const requestOptions = {
+    method: 'PUT',
+    body: JSON.stringify({ "update":`${update}`}),
+    headers: { 'Content-Type': 'application/json' },
+};
+fetch(url + "/todo/update/" + id,requestOptions).then((res)=>{console.log(res)
+ return res.json()})
+  };
+
+  const showHandler = (e, index) => {
+    e.preventDefault();
+    if (index !== selected) {
+      setShow((show) => !show);
+      setSelected(index);
+    }
+
+    console.log(index);
+  };
 
   const getItemDataFromBackend = async () => {
     const response = await fetch(url + "/todo/items");
@@ -41,86 +68,7 @@ const TodoList = () => {
   }, []);
 
   const displayData = () => {
-    return itemsArray.map((data) => (
-      <>
-        <div className="card">
-          <div className="container">
-            <div  style={{alignItems:"center"}} className=" row d-flex justify content-center mt-2 p-2">
-              <div className="col-8">
-                <p>{data.item}</p>
-              </div>
-              <div className="col-2">
-              <Button
-                className="btn btn-danger"
-                onClick={() => {
-                  deleteItem(data._id);
-                }}
-                variant="contained"
-                color="error"
-              >
-                <i className="fa fa-trash-alt m-0"></i>
-                &nbsp;  
-                </Button>
-              </div>
-              <div className="col-2">
-              <Button
-                className="btn btn-danger"
-                // onClick={() => {
-                //   deleteItem(data._id);
-                // }}
-                variant="contained"
-                color="warning"
-              >
-                <i className="fas fa-pen m-0"></i>
-                &nbsp;
-              
-              </Button>
-
-              </div>
-            </div>
-
-          </div>
-          {/* <div className="row">
-            <div className="col-2">
-              <div className="d-flex justify-content-center">
-                <input className="mt-3" type="checkbox" />
-              </div>
-            </div>
-            <div className="col-6">
-              <p className="mt-3 p-2" style={{ fontSize: "1.5rem" }}>
-                {data.item}
-              </p>
-            </div>
-            <div className="col-4 icons p-1">
-              <Button
-                className="btn btn-danger"
-                onClick={() => {
-                  deleteItem(data._id);
-                }}
-                variant="contained"
-                color="error"
-              >
-                <i className="fa fa-trash-alt"></i>
-                &nbsp;  Delete
-              </Button>
-              <Button
-                className="btn btn-danger"
-                // onClick={() => {
-                //   deleteItem(data._id);
-                // }}
-                variant="contained"
-                color="warning"
-              >
-                <i className="fas fa-pen"></i>
-                &nbsp;
-                Update
-              </Button>
-
-            </div>
-          </div> */}
-        </div>
-      </>
-    ));
+    return;
   };
   const todoItems = {
     item: " ",
@@ -179,7 +127,116 @@ const TodoList = () => {
                     Add Data
                   </button>
                   <hr />
-                  {displayData()}
+                  {/* {displayData()} */}
+                  {itemsArray.map((data, index) => {
+                    return (
+                      <div key={index}>
+                        <div className="card">
+                          <div className="container">
+                            <div
+                              style={{ alignItems: "center" }}
+                              className=" row d-flex justify content-center mt-2 p-2"
+                            >
+                              <div className="col-8">
+                                <p>{data.item}</p>
+                              </div>
+                              <div className="col-2">
+                                <Button
+                                  className="btn btn-danger"
+                                  onClick={() => {
+                                    deleteItem(data._id);
+                                  }}
+                                  variant="contained"
+                                  color="error"
+                                >
+                                  <i className="fa fa-trash-alt m-0"></i>
+                                  &nbsp;
+                                </Button>
+                              </div>
+                              <div className="col-2">
+                                <Button
+                                  className="btn btn-danger"
+                                  // onClick={() => {
+                                  //   deleteItem(data._id);
+                                  // }}
+                                  variant="contained"
+                                  color="warning"
+                                  type="button"
+                                  data-toggle="modal"
+                                  data-target="#exampleModal"
+                                  onClick={(e) => showHandler(e, index)}
+                                >
+                                  <i className="fas fa-pen m-0"></i>
+                                  &nbsp;
+                                </Button>
+                                {index == selected && show ? (
+                                  <div
+                                    className="modal fade"
+                                    id="exampleModal"
+                                    role="dialog"
+                                    aria-labelledby="exampleModalLabel"
+                                    aria-hidden="true"
+                                  >
+                                    <div
+                                      className="modal-dialog"
+                                      role="document"
+                                    >
+                                      <div className="modal-content">
+                                        <div className="modal-header">
+                                          <h5
+                                            className="modal-title"
+                                            id="exampleModalLabel"
+                                          >
+                                            Modal title
+                                          </h5>
+                                          <button
+                                            type="button"
+                                            className="close"
+                                            data-dismiss="modal"
+                                            aria-label="Close"
+                                          >
+                                            <span aria-hidden="true">
+                                              &times;
+                                            </span>
+                                          </button>
+                                        </div>
+                                        <div className="modal-body">
+                                          <input
+                                            onChange={(e) =>
+                                              setUpdate(e.target.value)
+                                            }
+                                          />
+                                        </div>
+                                        <div className="modal-footer">
+                                          <button
+                                            type="button"
+                                            className="btn btn-secondary"
+                                            data-dismiss="modal"
+                                          >
+                                            Close
+                                          </button>
+                                          <button
+                                            type="button"
+                                            className="btn btn-primary"
+                                            onClick={() =>
+                                              handleUpdate(data._id)
+                                            }
+                                          >
+                                            Save changes
+                                          </button>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                ) : // <input />
+                                null}
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  })}
                 </div>
               </div>
             </form>
