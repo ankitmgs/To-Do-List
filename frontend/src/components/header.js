@@ -19,9 +19,8 @@ const Header = () => {
         >
           <span className="navbar-toggler-icon"></span>
         </button>
-
-        <div className="collapse navbar-collapse center" id="navbarSupportedContent">
-          <ul className="navbar-nav mr-auto">
+        <div className="collapse navbar-collapse " id="navbarSupportedContent">
+          <ul className="navbar-nav mx-auto  d-flex justify-content-around">
             <li className="nav-item active">
               <NavLink className="nav-link" to="/todolist">
                 ToDoList
@@ -42,9 +41,9 @@ const Header = () => {
                 To-Do
               </NavLink>
             </li> */}
-            
+
           </ul>
-        
+
         </div>
       </nav>
     </div>
