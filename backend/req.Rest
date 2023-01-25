@@ -20,3 +20,8 @@ Content-Type: application/json
 
 DELETE http://localhost:5000/todo/delete/63cbb9e16c389dce80d3ce0c
 Content-Type: application/json
+
+
+###
+GET http://localhost:5000/todo/getbyid/63cfa8773dae8787f9d71780
+Content-Type: application/json

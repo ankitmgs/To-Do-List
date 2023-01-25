@@ -4,40 +4,36 @@ import { Button } from "@mui/material";
 import Swal from "sweetalert2";
 import { Formik } from "formik";
 import app_config from "../config";
+import { NavLink } from "react-router-dom";
 
 const TodoList = () => {
   const url = app_config.api_url;
-  const [show, setShow] = useState(false);
 
-  const [itemText, setItemText] = useState("");
-  const [selected, setSelected] = useState(null);
-  const [update, setUpdate] = useState("");
   const [itemsArray, setItemsArray] = useState([]);
-  const headers = {"Content-Type": "application/json"}
 
-  const handleUpdate = (id) => {
-    
-    console.log("jcnsvji",update)
-  console.log("sdjkbfshk",id)
-  
-  const requestOptions = {
-    method: 'PUT',
-    body: JSON.stringify({ "update":`${update}`}),
-    headers: { 'Content-Type': 'application/json' },
-};
-fetch(url + "/todo/update/" + id,requestOptions).then((res)=>{console.log(res)
- return res.json()})
-  };
+  //   const handleUpdate = (id) => {
 
-  const showHandler = (e, index) => {
-    e.preventDefault();
-    if (index !== selected) {
-      setShow((show) => !show);
-      setSelected(index);
-    }
+  //     console.log("jcnsvji",update)
+  //   console.log("sdjkbfshk",id)
 
-    console.log(index);
-  };
+  //   const requestOptions = {
+  //     method: 'PUT',
+  //     body: JSON.stringify({ "update":`${update}`}),
+  //     headers: { 'Content-Type': 'application/json' },
+  // };
+  // fetch(url + "/todo/update/" + id,requestOptions).then((res)=>{console.log(res)
+  //  return res.json()})
+  //   };
+
+  // const showHandler = (e, index) => {
+  //   e.preventDefault();
+  //   if (index !== selected) {
+  //     setShow((show) => !show);
+  //     setSelected(index);
+  //   }
+
+  //   console.log(index);
+  // };
 
   const getItemDataFromBackend = async () => {
     const response = await fetch(url + "/todo/items");
@@ -67,9 +63,6 @@ fetch(url + "/todo/update/" + id,requestOptions).then((res)=>{console.log(res)
     getItemDataFromBackend();
   }, []);
 
-  const displayData = () => {
-    return;
-  };
   const todoItems = {
     item: " ",
   };
@@ -154,82 +147,19 @@ fetch(url + "/todo/update/" + id,requestOptions).then((res)=>{console.log(res)
                                 </Button>
                               </div>
                               <div className="col-2">
-                                <Button
-                                  className="btn btn-danger"
-                                  // onClick={() => {
-                                  //   deleteItem(data._id);
-                                  // }}
-                                  variant="contained"
-                                  color="warning"
-                                  type="button"
-                                  data-toggle="modal"
-                                  data-target="#exampleModal"
-                                  onClick={(e) => showHandler(e, index)}
-                                >
-                                  <i className="fas fa-pen m-0"></i>
-                                  &nbsp;
-                                </Button>
-                                {index == selected && show ? (
-                                  <div
-                                    className="modal fade"
-                                    id="exampleModal"
-                                    role="dialog"
-                                    aria-labelledby="exampleModalLabel"
-                                    aria-hidden="true"
+                                <NavLink to={"/todolist/edit/" + data._id}>
+                                  <Button
+                                    className="btn btn-danger"
+                                    variant="contained"
+                                    color="warning"
+                                    type="button"
+                                    data-toggle="modal"
+                                    data-target="#exampleModal"
                                   >
-                                    <div
-                                      className="modal-dialog"
-                                      role="document"
-                                    >
-                                      <div className="modal-content">
-                                        <div className="modal-header">
-                                          <h5
-                                            className="modal-title"
-                                            id="exampleModalLabel"
-                                          >
-                                            Modal title
-                                          </h5>
-                                          <button
-                                            type="button"
-                                            className="close"
-                                            data-dismiss="modal"
-                                            aria-label="Close"
-                                          >
-                                            <span aria-hidden="true">
-                                              &times;
-                                            </span>
-                                          </button>
-                                        </div>
-                                        <div className="modal-body">
-                                          <input
-                                            onChange={(e) =>
-                                              setUpdate(e.target.value)
-                                            }
-                                          />
-                                        </div>
-                                        <div className="modal-footer">
-                                          <button
-                                            type="button"
-                                            className="btn btn-secondary"
-                                            data-dismiss="modal"
-                                          >
-                                            Close
-                                          </button>
-                                          <button
-                                            type="button"
-                                            className="btn btn-primary"
-                                            onClick={() =>
-                                              handleUpdate(data._id)
-                                            }
-                                          >
-                                            Save changes
-                                          </button>
-                                        </div>
-                                      </div>
-                                    </div>
-                                  </div>
-                                ) : // <input />
-                                null}
+                                    <i className="fas fa-pen m-0"></i>
+                                    &nbsp;
+                                  </Button>
+                                </NavLink>
                               </div>
                             </div>
                           </div>
