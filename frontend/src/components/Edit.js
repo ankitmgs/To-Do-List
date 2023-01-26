@@ -33,7 +33,7 @@ const EditItem = () => {
   }, []);
 
   const updateSubmit = (data) => {
-    // console.log("haa",data);
+    console.log(data);
     fetch(url + "/todo/update/" + itemId.id, {
       method: "PUT",
       body: JSON.stringify(data),
@@ -42,11 +42,11 @@ const EditItem = () => {
       },
     })
       .then((res) => {
-        if (res === 200) {
+        if (res.status === 200) {
           Swal.fire({
             icon: "success",
             title: "Success",
-            text: "Update ho  gaya",
+            text: "Updated successfully",
           });
         }
         return res.json();
@@ -61,19 +61,28 @@ const EditItem = () => {
       {isloading ? (
         <h3>Loading...</h3>
       ) : (
-        <div className="card">
-          <Formik initialValues={initialData} onSubmit={updateSubmit}>
-            {({ values, handleChange, handleSubmit }) => (
-              <form onSubmit={handleSubmit}>
-                <input id="item" value={values.item} onChange={handleChange} />
-
-                <button className="btn btn-success" type="submit">
-                  Update
-                </button>
-              </form>
-            )}
-          </Formik>
+        <div className="container mt-5 bg-light d-flex justify-content-center">
+          <div className="card  p-4 m-5 ">
+            <Formik initialValues={initialData} onSubmit={updateSubmit}>
+              {({ values, handleChange, handleSubmit }) => (
+                <form onSubmit={handleSubmit}>
+                  <h1 className="text-center">Update Todo List </h1>
+                  <input id="item"
+                    className="form-control p-3 w-100"
+                    // style={{width:"50rem"}}
+                    type="text"
+                    placeholder="Enter Title"
+                    value={values.item}
+                    onChange={handleChange} />
+                  <button className="btn btn-success mt-3 w-50 mx-auto d-flex justify-content-center" type="submit">
+                    Update Data
+                  </button>
+                </form>
+              )}
+            </Formik>
+          </div>
         </div>
+
       )}
     </div>
   );
