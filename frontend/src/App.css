@@ -1,20 +1,18 @@
-.todo-pop-card{
+.todo-pop-card {
   /* margin: 5rem; */
   padding: 5rem;
   width: 800px;
   background-color: rgb(183, 218, 255);
 }
 
-
-@media only screen and (max-width: 576px)
-{
-  .todo-pop-card{
-  padding: 2rem;
-  background-color: aqua;
+@media only screen and (max-width: 576px) {
+  .todo-pop-card {
+    padding: 2rem;
+    background-color: aqua;
   }
 }
 
-.todo-item-top{
+.todo-item-top {
   border: 1px solid black;
   display: flex;
   justify-content: space-around;
@@ -23,6 +21,27 @@
   margin-bottom: 1rem;
   border-radius: 10px;
 }
-.todo-item-para{
-  font-size:x-large;
+
+@media only screen and (max-width: 576px) {
+  .todo-item-top {
+    border: 1px solid black;
+    display: flex;
+    justify-content: space-around;
+    height: 6rem;
+    align-items: center;
+    margin-bottom: 1rem;
+    border-radius: 10px;
+  }
+}
+.todo-item-para {
+  font-size: x-large;
+  width: 30rem;
+  margin-left: 1rem;
+}
+@media only screen and (max-width: 576px) {
+  .todo-item-para {
+    font-size: large;
+    width: 30rem;
+    margin-left: 1rem;
+  }
 }

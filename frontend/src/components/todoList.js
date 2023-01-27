@@ -143,16 +143,35 @@ const TodoList = () => {
                           <p className="todo-item-para">{data.item}</p>
 
                           <div>
-                            <button className="btn btn-danger mx-3" onClick={() => {
+                            {/* <button className="btn btn-danger mx-3" onClick={() => {
                               deleteItem(data._id)
                             }}>
                               <i className="fa fa-trash-alt" />
-                            </button>
-                            <NavLink to={"/todolist/edit/" + data._id}>
-                              <button className="btn btn-light">
-                                <i className="fas fa-pen " />
-                              </button>
-                            </NavLink>
+                            </button> */}
+                            <Button
+                                  className="btn btn-danger"
+                                  onClick={() => {
+                                    deleteItem(data._id);
+                                  }}
+                                  variant="contained"
+                                  color="error"
+                                >
+                                  <i className="fa fa-trash-alt"></i>
+                                  &nbsp;
+                                </Button>
+                                <NavLink to={"/todolist/edit/" + data._id}>
+                                  <Button
+                                    className="btn btn-danger"
+                                    variant="contained"
+                                    color="warning"
+                                    type="button"
+                                    data-toggle="modal"
+                                    data-target="#exampleModal"
+                                  >
+                                    <i className="fas fa-pen m-0 p-0"></i>
+                                    &nbsp;
+                                  </Button>
+                                </NavLink>
                           </div>
 
                         </div>
