@@ -62,14 +62,14 @@ const Login = () => {
       <Formik initialValues={loginForm} onSubmit={loginSubmit}>
         {({ values, handleSubmit, handleChange }) => (
           <form onSubmit={handleSubmit}>
-            <MDBContainer className="mt-4">
+            <MDBContainer className="mt-4 ">
               <MDBCard>
                 <MDBRow className="g-0">
                   <MDBCol md="6">
                     <MDBCardImage
                       src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/img1.webp"
                       alt="login form"
-                      className="rounded-start w-100 h-70"
+                      className="rounded-start w-100 h-10"
                     />
                   </MDBCol>
 
@@ -117,7 +117,7 @@ const Login = () => {
                       >
                         Login
                       </button>
-                      <p className="mb-5 pb-lg-2" style={{ color: "#393f81" }}>
+                      <p className="mb-5 " style={{ color: "#393f81" }}>
                         Don't have an account?
                         <NavLink to="/signup" style={{ color: "#393f81" }}>
                           Register here

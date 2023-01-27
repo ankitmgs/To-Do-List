@@ -11,30 +11,6 @@ const TodoList = () => {
 
   const [itemsArray, setItemsArray] = useState([]);
 
-  //   const handleUpdate = (id) => {
-
-  //     console.log("jcnsvji",update)
-  //   console.log("sdjkbfshk",id)
-
-  //   const requestOptions = {
-  //     method: 'PUT',
-  //     body: JSON.stringify({ "update":`${update}`}),
-  //     headers: { 'Content-Type': 'application/json' },
-  // };
-  // fetch(url + "/todo/update/" + id,requestOptions).then((res)=>{console.log(res)
-  //  return res.json()})
-  //   };
-
-  // const showHandler = (e, index) => {
-  //   e.preventDefault();
-  //   if (index !== selected) {
-  //     setShow((show) => !show);
-  //     setSelected(index);
-  //   }
-
-  //   console.log(index);
-  // };
-
   const getItemDataFromBackend = async () => {
     const response = await fetch(url + "/todo/items");
     const data = await response.json();
@@ -98,12 +74,7 @@ const TodoList = () => {
             <form onSubmit={handleSubmit}>
               <div className="d-flex justify-content-center">
                 <div
-                  className="card m-5 p-5"
-                  style={{
-                    width: "50rem",
-                    boxShadow: "rgba(100, 100, 111, 0.2) 0px 7px 29px 0px",
-                  }}
-                >
+                  className="card todo-pop-card">
                   <h2 className="text-center mb-5">Todo App</h2>
                   <input
                     className="form-control p-3"
@@ -117,15 +88,18 @@ const TodoList = () => {
                     className="btn btn-primary mt-3 w-25 mx-auto"
                     type="submit"
                   >
-                    Add Data
+                    Add
                   </button>
                   <hr />
                   {/* {displayData()} */}
                   {itemsArray.map((data, index) => {
                     return (
                       <div key={index}>
-                        <div className="card">
+
+
+                        {/* <div className="card mt-3 p-0 bg-light">
                           <div className="container">
+                            
                             <div
                               style={{ alignItems: "center" }}
                               className=" row d-flex justify content-center mt-2 p-2"
@@ -163,6 +137,24 @@ const TodoList = () => {
                               </div>
                             </div>
                           </div>
+                        </div> */}
+
+                        <div className="todo-item-top">
+                          <p className="todo-item-para">{data.item}</p>
+
+                          <div>
+                            <button className="btn btn-danger mx-3" onClick={() => {
+                              deleteItem(data._id)
+                            }}>
+                              <i className="fa fa-trash-alt" />
+                            </button>
+                            <NavLink to={"/todolist/edit/" + data._id}>
+                              <button className="btn btn-light">
+                                <i className="fas fa-pen " />
+                              </button>
+                            </NavLink>
+                          </div>
+
                         </div>
                       </div>
                     );
